@@ -21,5 +21,5 @@
 === Points worth attention ===
 . The out put of forward propagation should be linear result *without activation fucntion*.
   This is because `softmax_cross_entropy_with_logits` will include softmax activation function and resulting loss at the same time.
-  
+. For *initialize weight parameter* part, W1:[ kernel size, kernel size, input size(channel number), output size(filter's number)].
   
