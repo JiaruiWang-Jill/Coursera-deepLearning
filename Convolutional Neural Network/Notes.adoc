@@ -1,6 +1,6 @@
 = Notes 
 
-== Week1 AS2 ==
+== Week1 AS2 Convolutional Model Application ==
 === Basic summary of tensor flows usage in CNN structure ===
 
 . *initialize weights parameter*. eg.`tf.get_variable("W", [1,2,3,4], initializer = tf.contrib.layers.xavier_initializer(seed = 0))`
@@ -24,7 +24,7 @@
 . For *initialize weight parameter* part, W1:[ kernel size, kernel size, input size(channel number), output size(filters number)].
 
   
-== Week2 AS1 ==
+== Week3 AS1 Autonomous Driving Application Car Detection ==
 === Basic summary of YOLO algorithm ===
 
 . *Go through CNN* Input image `(608, 608, 3)`. The input image goes through a CNN, resulting in a `(19,19,5,85)` dimensional output.( (pc,bx,by,bh,bw)  has 5 numbers, and and 80 is the number of classes we would like to detect)
