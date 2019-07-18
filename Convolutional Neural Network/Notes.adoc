@@ -1,25 +1,25 @@
 = Notes
 
-== Week1 as2==
-*Basic summary of tf and CNN structure*
+== Week1 AS2 ==
+=== Basic summary of tensor flow's usage in CNN structure ===
 
-. initialize weights parameter by tf.get_variable("W", [1,2,3,4], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-. forward propagation, including convolution layer, pooling layer and fully connected layer
-* convolution layer: conv2d and relu
-* eg.`tf.nn.conv2d(X, W1, strides=[1,1,1,1], padding='SAME')`
+. *initialize weights parameter*. eg.`tf.get_variable("W", [1,2,3,4], initializer = tf.contrib.layers.xavier_initializer(seed = 0))`
+. *forward propagation*, including convolution layer, pooling layer and fully connected layer
+* convolution layer: conv2d and relu.
+ eg.`tf.nn.conv2d(X, W1, strides=[1,1,1,1], padding='SAME')`
 	  `tf.nn.relu(Z1)`
-* pooling layer: max pool
-* eg.`tf.nn.max_pool(A2, ksize=[1,4,4,1], strides = [1,4,4,1], padding='SAME')`
-* fully conencted: flatten(sometimes), fully_connected
-* eg.`tf.contrib.layers.flatten(P2)`
+* pooling layer: max pool.
+ eg.`tf.nn.max_pool(A2, ksize=[1,4,4,1], strides = [1,4,4,1], padding='SAME')`
+* fully conencted: flatten(sometimes), fully_connected.
+ eg.`tf.contrib.layers.flatten(P2)`,
      `tf.contrib.layers.fully_connected(P, 6, activation_fn=None )`
-. cost function: 
+. *cost function*: 
   eg.`tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits(logits = Z3, labels=Y))`
-. back propagation:optimizer
+. *back propagation*:optimizer.
   eg.`tf.train.AdamOptimizer(learning_rate = learning_rate).minimize(cost)`
 
-*Points worth attention*
-. The out put of forward propagation should be linear result without activation fucntion.
+=== Points worth attention ===
+. The out put of forward propagation should be linear result *without activation fucntion*.
   This is because `softmax_cross_entropy_with_logits` will include softmax activation function and resulting loss at the same time.
-  
+. For *initialize weight parameter* part, W1:[ kernel size, kernel size, input size(channel number), output size(filter's number)].
   
