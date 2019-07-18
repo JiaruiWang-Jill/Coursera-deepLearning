@@ -29,8 +29,8 @@
 
 . *Go through CNN* Input image `(608, 608, 3)`. The input image goes through a CNN, resulting in a `(19,19,5,85)` dimensional output.( (pc,bx,by,bh,bw)  has 5 numbers, and and 80 is the number of classes we would like to detect)
 . *Filter through all the boxes* using non-max suppression. Specifically:
-. Score-thresholding: throw away boxes that have detected a class with a score less than the threshold
-. Non-max suppression: Compute the Intersection over Union and avoid selecting overlapping boxes
+.. Score-thresholding: throw away boxes that have detected a class with a score less than the threshold
+.. Non-max suppression: Compute the Intersection over Union and avoid selecting overlapping boxes
 
 === Implementation details of *Filter through all the boxes* ===
 . element multiply *box_confidence* with *box_class_probs*, get max( ensure there is only one class for one cell, one anchor)
@@ -38,6 +38,6 @@
 . get filtered box_confidence, boxes, box_classes(after filter, boxes, scores, classes are flattened)
 . perform non-maximum suppresion to get anchor
 
-=== points worth mentioning ===
+=== Points worth mentioning ===
 . when comprehensioning the variables with 4 dimensions, the first three 19*19*5 can be regarded as a block. When considering the single data, just look at the last dimension to check the vector size
 . for anchor box assignment, just two numbers should be okay, which is height and weight. Becasue the anchor box doesn't need to fix the center cx, cy
