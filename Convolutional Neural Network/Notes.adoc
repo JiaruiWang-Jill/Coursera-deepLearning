@@ -1,7 +1,7 @@
-= Notes
+= Notes 
 
 == Week1 AS2 ==
-=== Basic summary of tensor flow's usage in CNN structure ===
+=== Basic summary of tensor flows usage in CNN structure ===
 
 . *initialize weights parameter*. eg.`tf.get_variable("W", [1,2,3,4], initializer = tf.contrib.layers.xavier_initializer(seed = 0))`
 . *forward propagation*, including convolution layer, pooling layer and fully connected layer
@@ -21,5 +21,23 @@
 === Points worth attention ===
 . The out put of forward propagation should be linear result *without activation fucntion*.
   This is because `softmax_cross_entropy_with_logits` will include softmax activation function and resulting loss at the same time.
-. For *initialize weight parameter* part, W1:[ kernel size, kernel size, input size(channel number), output size(filter's number)].
+. For *initialize weight parameter* part, W1:[ kernel size, kernel size, input size(channel number), output size(filters number)].
+
   
+== Week2 AS1 ==
+=== Basic summary of YOLO algorithm ===
+
+. *Go through CNN* Input image `(608, 608, 3)`. The input image goes through a CNN, resulting in a `(19,19,5,85)` dimensional output.( (pc,bx,by,bh,bw)  has 5 numbers, and and 80 is the number of classes we would like to detect)
+. *Filter through all the boxes* using non-max suppression. Specifically:
+. Score-thresholding: throw away boxes that have detected a class with a score less than the threshold
+. Non-max suppression: Compute the Intersection over Union and avoid selecting overlapping boxes
+
+=== Implementation details of *Filter through all the boxes* ===
+. element multiply *box_confidence* with *box_class_probs*, get max( ensure there is only one class for one cell, one anchor)
+. get filtering mask(remove those with small prob, filter size is `(19*19*5)`
+. get filtered box_confidence, boxes, box_classes(after filter, boxes, scores, classes are flattened)
+. perform non-maximum suppresion to get anchor
+
+=== points worth mentioning ===
+. when comprehensioning the variables with 4 dimensions, the first three 19*19*5 can be regarded as a block. When considering the single data, just look at the last dimension to check the vector size
+. for anchor box assignment, just two numbers should be okay, which is height and weight. Becasue the anchor box doesn't need to fix the center cx, cy

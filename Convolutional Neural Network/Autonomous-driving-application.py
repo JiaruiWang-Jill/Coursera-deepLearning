@@ -13,29 +13,7 @@ from keras.layers import load_model, Model
 from yolo_utils import read_classes, read_anchors, generate_colors, preprocess_image, draw_boxes, scale_boxes
 from yad2k.models.keras_yolo import yolo_head, yol_boxes_to_corners, preprocess_true_boxes, yolo_loss, yolo_body
 
-# Input image (608, 608, 3)
-# The input image goes through a CNN, resulting in a (19,19,5,85) dimensional output.
-# After flattening the last two dimensions, the output is a volume of shape (19, 19, 425):
-# Each cell in a 19x19 grid over the input image gives 425 numbers.
-# 425 = 5 x 85 because each cell contains predictions for 5 boxes, corresponding to 5 anchor boxes, as seen in lecture.
-# 85 = 5 + 80 where 5 is because  (pc,bx,by,bh,bw)(pc,bx,by,bh,bw)  has 5 numbers, and and 80 is the number of classes we'd like to detect
-# You then select only few boxes based on:
-# Score-thresholding: throw away boxes that have detected a class with a score less than the threshold
-# Non-max suppression: Compute the Intersection over Union and avoid selecting overlapping boxes
-# This gives you YOLO's final output
 
-
-
-# keras.backend.argmax(x, axis=-1)
-# boolean_mask(tensor, mask)
-# steps:
-# 1. element multiply *box_confidence* with *box_class_probs*, get max( ensure there is only one class for one cell, one anchor)
-# 2. get filtering mask(remove those with small prob, filter size is 19*19*5)
-# 3. get filtered box_confidence, boxes, box_classes(after filter, boxes, scores, classes are flattened)
-# 4. perform non-maximum suppresion to get anchor
-
-# === points worth mentioning ===
-# . when comprehensioning the variables with 4 dimensions, the first three 19*19*5 can be regarded as a block. When considering the single data, just look at the last dimension to check the vector size
 def yolo_filter_boxes(box_confidence, boxes, box_class_probs, threshold = .6):
 	box_scores = box_confidence * box_class_probs
 	box_classes = K.argmax(box_scores, axis = -1)
