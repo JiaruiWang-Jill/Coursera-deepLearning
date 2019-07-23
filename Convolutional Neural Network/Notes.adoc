@@ -58,9 +58,9 @@ Step:
 
 
 
-== Week4 Face Recognition for Happy House ==
+== Week4 AS2 Face Recognition for Happy House ==
 === Basic summary of face recognition and face verification.
 . Face verification and face recogniyion are similar, verification is 1v1, face recognition is 1v.
 . The neural network's final goal is to encode image, and then use the encoding to compare the difference between images.
 . Main steps:
-.. triplet loss = sum( (f(A) - f(P) )**2 - (f(A) - f(N) )**2 + alpha)
+.. triplet loss = `sum( (f(A) - f(P))^2 - (f(A) - f(N) )^2 + alpha)`
