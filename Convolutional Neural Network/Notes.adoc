@@ -41,3 +41,26 @@
 === Points worth mentioning ===
 . when comprehensioning the variables with 4 dimensions, the first three 19*19*5 can be regarded as a block. When considering the single data, just look at the last dimension to check the vector size
 . for anchor box assignment, just two numbers should be okay, which is height and weight. Becasue the anchor box doesn't need to fix the center cx, cy
+
+
+== Week4 AS1 ArtGeneration  with Neural Style Transfer ==
+=== Basic Summary of neural style transfer ===
+. *NST* is built based on a pre-trained network, which is VGG 16. 
+In this pre-trained, we have learned a variety of low level features(edge and simple texture) and high level features(onject classes & complex textures).
+Step:
+. model input twice, one is content image, another is style image. G serves as weights, needed BP to update it every step.
+. build content cost function.(pick a particular hidden layer)
+. build style cost function.(can pick one hidden layer / several hidden layers)
+. optimization by:
+.. run content image through VGG model and compute content cost.
+.. run style image through VGG model and compute style cost.
+.. define oprimizer and learning rate, and minimize total cost(*total cost* is a function related to G, J(G), therefore update G every steps).
+
+
+
+== Week4 Face Recognition for Happy House ==
+=== Basic summary of face recognition and face verification.
+. Face verification and face recogniyion are similar, verification is 1v1, face recognition is 1v.
+. The neural network's final goal is to encode image, and then use the encoding to compare the difference between images.
+. Main steps:
+.. triplet loss = sum( (f(A) - f(P) )**2 - (f(A) - f(N) )**2 + alpha)
