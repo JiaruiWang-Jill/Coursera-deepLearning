@@ -1,3 +1,0 @@
-. When people refer to pre-trained network, such as VGG, it includes both framework and trained-weights. 
-From my understanding, because these `pre-trained networks` are usually used as convolutional nerual network / used to view images, 
-which means the first few shallow layers are exteracting simple & similar features, such as lines,color, etc. Therefore, the pre-trained weights can be used even when prediction goals are different.
